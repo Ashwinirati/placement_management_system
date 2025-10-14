@@ -53,6 +53,9 @@ export default function ATSAnalyzer() {
 
       <div className="ats" style={{marginTop:12}}>
         <div className="score">Score: <strong>{result.score}%</strong></div>
+        {result.subscores && (
+          <div className="muted">Subscores — Keywords: {result.subscores.keywords ?? 0}%, Skills: {result.subscores.skills ?? 0}%, Formatting: {result.subscores.formatting ?? 0}%</div>
+        )}
         <div className="checks">
           <div className={result.checks.hasEmail ? 'ok' : 'warn'}>Contact Email {result.checks.hasEmail ? '✓' : '✗'}</div>
           <div className={result.checks.hasPhone ? 'ok' : 'warn'}>Phone {result.checks.hasPhone ? '✓' : '✗'}</div>
@@ -72,6 +75,14 @@ export default function ATSAnalyzer() {
             </div>
           </div>
         </div>
+        {Array.isArray(result.suggestions) && result.suggestions.length > 0 && (
+          <div style={{marginTop:10}}>
+            <h4>Suggestions</h4>
+            <ul className="list">
+              {result.suggestions.map((s, i) => <li key={i} className="list-item">{s}</li>)}
+            </ul>
+          </div>
+        )}
         {error && <div className="error">{error}</div>}
         <div className="muted">Tip: Incorporate relevant missing keywords naturally in your experience, skills, and projects.</div>
       </div>

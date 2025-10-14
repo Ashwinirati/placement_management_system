@@ -115,6 +115,7 @@ def analyze(resume_text: str, jd_text: str):
         'suggestions': suggestions[:10]
     }
 
+
 @ats_bp.route('/ats/analyze', methods=['POST'])
 def ats_analyze():
     try:
@@ -123,6 +124,7 @@ def ats_analyze():
         jd_text = data.get('jd_text', '')
         if not jd_text:
             return jsonify({'message': 'jd_text is required'}), 400
+        # Heuristic analysis only
         result = analyze(resume_text, jd_text)
         return jsonify(result)
     except Exception as e:
