@@ -1,0 +1,4 @@
+{
+  "builds": [
+    { "src": "placement-management-frontend/package.json", "use": "@vercel/static-build" }
+  ]}
